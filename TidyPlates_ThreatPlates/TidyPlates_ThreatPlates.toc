@@ -1,0 +1,41 @@
+﻿## Interface: 30300
+## Title: Tidy Plates: |cff89F559Threat Plates|r |cffff00ffBeta|r
+## Notes: Revolutionary |cff89F559threat reactive nameplates|r by |cff3079ffSuicidal Katt|r.
+## Author: Suicidal Katt
+## RequiredDeps: TidyPlates
+## SavedVariables: ThreatPlates3BetaDB
+## Version: 3.3
+## OptionalDeps: Ace3, LibSharedMedia-3.0
+
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+embeds.xml
+
+TidyPlatesThreat.lua
+Functions\alpha.lua
+Functions\scale.lua
+Functions\casttext.lua
+Functions\healthtext.lua
+Functions\castbarcolor.lua
+Functions\healthbarcolor.lua
+Functions\threatcolor.lua
+
+Widgets\Widgets.lua
+Widgets\EliteArtWidget.lua
+Widgets\ClassIconWidget.lua
+Widgets\ComboPointWidget.lua
+Widgets\TargetArtWidget.lua
+Widgets\ThreatWidget.lua
+Widgets\TotemIconWidget.lua
+Widgets\UniqueIconWidget.lua
+
+options.lua
+
+Styles\empty.lua
+Styles\normal.lua
+Styles\etotem.lua
+Styles\totem.lua
+Styles\unique.lua
+Styles\tank.lua
+Styles\dps.lua
+
