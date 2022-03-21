@@ -2,7 +2,7 @@
 -- Threat Widget --
 -------------------
 local path = "Interface\\AddOns\\TidyPlates_ThreatPlates\\Widgets\\ThreatWidget\\"
-ThemeList = {none = "None", default = "Default", bar = "Bar Style"}
+ThemeList = {none = "Нет", default = "По умолчанию", bar = "Цветная шкала"}
 -- Threat Widget
 local function UpdateThreatWidget(frame, unit)
 	local db = TidyPlatesThreat.db.profile

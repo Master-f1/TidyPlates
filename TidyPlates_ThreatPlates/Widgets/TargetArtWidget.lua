@@ -2,7 +2,7 @@
 -- Target Art Widget --
 -----------------------
 local path = "Interface\\AddOns\\TidyPlates_ThreatPlates\\Widgets\\TargetArtWidget\\"
-TargetList = { default = "Default", arrows = "Arrows", crescent = "Crescent", bubble = "Bubble"}
+TargetList = { default = "По умолчанию", arrows = "Стрелки", crescent = "Полусент", bubble = "Пузырь"}
 -- Target Art
 local function UpdateTargetFrameArt(frame, unit)
 	local t = TidyPlatesThreat.db.profile.targetWidget

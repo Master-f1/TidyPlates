@@ -8,33 +8,33 @@ Media:Register("font", "Accidental Presidency",[[Interface\Addons\TidyPlates_Thr
 
 -- Threat Texture Themes:
 
-ClassList = {default = "Default", transparent = "Transparent"}
+ClassList = {default = "По умолчанию", transparent = "Прозрачная"}
 ThreatStyleList = { [1] = "Threat Line", [2] = "Threat Wheel"}
 local FullAlign = {
-	TOPLEFT = "TOPLEFT",
-	TOP = "TOP",
-	TOPRIGHT = "TOPRIGHT",
-	LEFT = "LEFT",
-	CENTER = "CENTER",
-	RIGHT = "RIGHT",
-	BOTTOMLEFT = "BOTTOMLEFT",
-	BOTTOM = "BOTTOM",
-	BOTTOMRIGHT = "BOTTOMRIGHT"
+	TOPLEFT = "Сверху слева",
+	TOP = "Сверху",
+	TOPRIGHT = "Сверху справа",
+	LEFT = "Слева",
+	CENTER = "По центру",
+	RIGHT = "Справа",
+	BOTTOMLEFT = "Снизу слева",
+	BOTTOM = "Снизу",
+	BOTTOMRIGHT = "Снизу справа"
 }
-local AlignH = {LEFT = "LEFT", CENTER = "CENTER", RIGHT = "RIGHT"}
-local AlignV = {BOTTOM = "BOTTOM", CENTER = "CENTER", TOP = "TOP"}
+local AlignH = {LEFT = "Слева", CENTER = "По центру", RIGHT = "Справа"}
+local AlignV = {BOTTOM = "Снизу", CENTER = "По центру", TOP = "Сверху"}
 FontStyle = {
-	NONE = "None", 
-	OUTLINE = "Outline", 
-	THICKOUTLINE = "Thick Outline", 
-	["NONE, MONOCHROME"] = "No Outline, Monochrome", 
-	["OUTLINE, MONOCHROME"] = "Outline, Monochrome", 
-	["THICKOUTLINE, MONOCHROME"] = "Thick Outline, Monochrome"
+	NONE = "Нет", 
+	OUTLINE = "Контур", 
+	THICKOUTLINE = "Толстый контур", 
+	["NONE, MONOCHROME"] = "Монохромный", 
+	["OUTLINE, MONOCHROME"] = "Контур, Монохромный", 
+	["THICKOUTLINE, MONOCHROME"] = "Толстый Контур, Монохромный"
 }
 local DebuffMode = {
-	["whitelist"] = "White List",
-	["blacklist"] = "Black List",
-	["all"] = "All Debuffs"
+	["whitelist"] = "Белый список",
+	["blacklist"] = "Черный список",
+	["all"] = "Все дебафы"
 }
 
 -- Добавьте свои собственные текстуры угрозы с папкой в папке произведения искусства с собственными низкими средними и высокими текстурами.
@@ -150,14 +150,14 @@ local function SetThemeValue(info, val)
 	TidyPlatesThreat.db.profile.settings[location][mod] = val
 	TidyPlates:ReloadTheme()
 	TidyPlates:ForceUpdate()
-	if location == "specialArt" and mod == "scale" then -- Preserves Threat Textures from class icon changes.
+	if location == "specialArt" and mod == "scale" then -- Сохраняет текстуры угроз из класса значок изменения.
 		for z=1, 2 do
 			TidyPlatesThemeList['Threat Plates']["normal"][location][modList[z]] = TidyPlatesThreat.db.profile.settings[location][mod]
 		end
 	elseif mod == "showSpecialArt" then
 		TidyPlatesThemeList['Threat Plates']["normal"][location][mod] = TidyPlatesThreat.db.profile.settings[location][mod]
 	else
-		if mod == "scale" then -- Allows width and height to be set for "scale" settings. Doesn't apply theme changes to eliteIcon.
+		if mod == "scale" then -- Позволяет установить ширину и высоту для «масштабирования» настроек.Не применяет тему изменения в Eliteicon.
 			for z=1, 2 do
 				for i=1,4 do
 					TidyPlatesThemeList['Threat Plates'][themeList[i]][location][modList[z]] = TidyPlatesThreat.db.profile.settings[location][mod]
@@ -167,10 +167,8 @@ local function SetThemeValue(info, val)
 			for i=1,4 do
 				TidyPlatesThemeList['Threat Plates'][themeList[i]][location][mod] = TidyPlatesThreat.db.profile.settings[location][mod]
 			end
-		else
 		end
 	end
-	
 end
 
 -- Text Colors
@@ -261,7 +259,11 @@ end
 
 local function SetToggleNameplate(info)
 	TidyPlatesThreat.db.profile.nameplate.toggle[info.arg] = not TidyPlatesThreat.db.profile.nameplate.toggle[info.arg]
-	if TidyPlatesThreat.db.profile.nameplate.toggle[info.arg] and TidyPlatesThreat.db.profile.verbose then return print("-->>"..info.arg.." nameplates are now |cff00ff00ON!|r<<--") elseif TidyPlatesThreat.db.profile.verbose then return print("-->>"..info.arg.." nameplates are now |cffff0000OFF!|r<<--") end
+	if TidyPlatesThreat.db.profile.nameplate.toggle[info.arg] and TidyPlatesThreat.db.profile.verbose then 
+		return print("-->>"..info.arg.." nameplates are now |cff00ff00ON!|r<<--") 
+	elseif TidyPlatesThreat.db.profile.verbose then 
+		return print("-->>"..info.arg.." nameplates are now |cffff0000OFF!|r<<--") 
+	end
 	TidyPlates:ReloadTheme()
 	TidyPlates:ForceUpdate()
 end
@@ -545,7 +547,7 @@ local options = {
 						end,
 						set = function(info, r, g, b) 
 							local p = TidyPlatesThreat.db.profile.castbarColor
-							p.r, p.g, p.b = r,g,b,a
+							p.r, p.g, p.b = r,g,b
 							TidyPlates:ReloadTheme()
 							TidyPlates:ForceUpdate()
 						end,
@@ -652,7 +654,7 @@ local options = {
 						end,
 						set = function(info, r, g, b) 
 							local p = TidyPlatesThreat.db.profile.fHPbarColor
-							p.r, p.g, p.b = r,g,b,a
+							p.r, p.g, p.b = r,g,b
 							TidyPlates:ReloadTheme()
 							TidyPlates:ForceUpdate()
 						end,
@@ -668,7 +670,7 @@ local options = {
 						end,
 						set = function(info, r, g, b) 
 							local p = TidyPlatesThreat.db.profile.nHPbarColor
-							p.r, p.g, p.b = r,g,b,a
+							p.r, p.g, p.b = r,g,b
 							TidyPlates:ReloadTheme()
 							TidyPlates:ForceUpdate()
 						end,
@@ -684,7 +686,7 @@ local options = {
 						end,
 						set = function(info, r, g, b) 
 							local p = TidyPlatesThreat.db.profile.HPbarColor
-							p.r, p.g, p.b = r,g,b,a
+							p.r, p.g, p.b = r,g,b
 							TidyPlates:ReloadTheme()
 							TidyPlates:ForceUpdate()
 						end,
@@ -7324,19 +7326,19 @@ local options = {
 						desc = "Включить или отключить систему угроз для дд или исцеления.",
 						get = function() return not TidyPlatesThreat.db.char.threat.tanking end,
 						set = function(info,val)
-								if TidyPlatesThreat.db.profile.verbose then print("-->>|cff00ff00DPS Role threat system is now active!!|r<<--") end
-								if GetActiveTalentGroup() == 1 then
-									TidyPlatesThreat.db.char.spec.primary = not TidyPlatesThreat.db.char.spec.primary
-									if TidyPlatesThreat.db.profile.verbose then print("Your |cff89F559primary|r spec has been set to "..roleText(current)..".") end
-								elseif GetActiveTalentGroup() == 2 then	
-									TidyPlatesThreat.db.char.spec.secondary = not TidyPlatesThreat.db.char.spec.secondary
-									if TidyPlatesThreat.db.profile.verbose then print("Your |cff89F559secondary|r spec has been set to "..roleText(current)..".") end
-								end
-								TidyPlatesThreat.db.char.threat.tanking = false
-								TidyPlatesThreat.db.profile.threat.ON = true
-								SetThreatOldSetting()
-								TidyPlates:ReloadTheme()
+							if TidyPlatesThreat.db.profile.verbose then print("-->>|cff00ff00DPS Role threat system is now active!!|r<<--") end
+							if GetActiveTalentGroup() == 1 then	
+								TidyPlatesThreat.db.char.spec.primary = not TidyPlatesThreat.db.char.spec.primary
+								if TidyPlatesThreat.db.profile.verbose then print("Your |cff89F559primary|r spec has been set to "..roleText()..".") end
+							elseif GetActiveTalentGroup() == 2 then	
+								TidyPlatesThreat.db.char.spec.secondary = not TidyPlatesThreat.db.char.spec.secondary
+								if TidyPlatesThreat.db.profile.verbose then print("Your |cff89F559secondary|r spec has been set to "..roleText()..".") end
 							end
+							TidyPlatesThreat.db.char.threat.tanking = false
+							TidyPlatesThreat.db.profile.threat.ON = true
+							SetThreatOldSetting()
+							TidyPlates:ReloadTheme()
+						end
 					},
 					TankRole = {
 						order = 5,
@@ -7346,19 +7348,19 @@ local options = {
 						desc = "Включить или отключить систему угроз для танка.",
 						get = function() return TidyPlatesThreat.db.char.threat.tanking end,
 						set = function(info,val) 
-								if TidyPlatesThreat.db.profile.verbose then print("-->>|cff00ff00Tank Role threat system is now active!!|r<<--") end
-								if GetActiveTalentGroup() == 1 then
-									TidyPlatesThreat.db.char.spec.primary = not TidyPlatesThreat.db.char.spec.primary
-									if TidyPlatesThreat.db.profile.verbose then print("Your |cff89F559primary|r spec has been set to "..roleText(current)..".") end
-								elseif GetActiveTalentGroup() == 2 then	
-									TidyPlatesThreat.db.char.spec.secondary = not TidyPlatesThreat.db.char.spec.secondary
-									if TidyPlatesThreat.db.profile.verbose then print("Your |cff89F559secondary|r spec has been set to "..roleText(current)..".") end
-								end
-								TidyPlatesThreat.db.char.threat.tanking = true
-								TidyPlatesThreat.db.profile.threat.ON = true
-								SetThreatOldSetting()
-								TidyPlates:ReloadTheme()
+							if TidyPlatesThreat.db.profile.verbose then print("-->>|cff00ff00Tank Role threat system is now active!!|r<<--") end
+							if GetActiveTalentGroup() == 1 then	
+								TidyPlatesThreat.db.char.spec.primary = not TidyPlatesThreat.db.char.spec.primary
+								if TidyPlatesThreat.db.profile.verbose then print("Your |cff89F559primary|r spec has been set to "..roleText()..".") end
+							elseif GetActiveTalentGroup() == 2 then	
+								TidyPlatesThreat.db.char.spec.secondary = not TidyPlatesThreat.db.char.spec.secondary
+								if TidyPlatesThreat.db.profile.verbose then print("Your |cff89F559secondary|r spec has been set to "..roleText()..".") end
 							end
+							TidyPlatesThreat.db.char.threat.tanking = true
+							TidyPlatesThreat.db.profile.threat.ON = true
+							SetThreatOldSetting()
+							TidyPlates:ReloadTheme()
+						end
 					},
 					header2 = {
 						type = "header",
@@ -7410,8 +7412,12 @@ local options = {
 						get = function() return TidyPlatesThreat.db.profile.threat.useHPColor end,
 						set = function(info)
 							TidyPlatesThreat.db.profile.threat.useHPColor = not TidyPlatesThreat.db.profile.threat.useHPColor
-							if TidyPlatesThreat.db.profile.threat.useHPColor and TidyPlatesThreat.db.profile.verbose then return print("-->>Coloring of health by threat is |cff00ff00ON!!|r<<--") elseif TidyPlatesThreat.db.profile.verbose then return print ("-->>Coloring of health by threat is |cffff0000OFF!!|r<<--") end
+							if TidyPlatesThreat.db.profile.threat.useHPColor and TidyPlatesThreat.db.profile.verbose then 
+								return print("-->>Coloring of health by threat is |cff00ff00ON!!|r<<--") 
+							elseif TidyPlatesThreat.db.profile.verbose then 
+								return print ("-->>Coloring of health by threat is |cffff0000OFF!!|r<<--") 
 							end
+						end
 					},
 					NonCombat = {
 						order = 7.1,
@@ -7421,8 +7427,12 @@ local options = {
 						get = function() return TidyPlatesThreat.db.profile.threat.nonCombat end,
 						set = function(info)
 							TidyPlatesThreat.db.profile.threat.nonCombat = not TidyPlatesThreat.db.profile.threat.nonCombat
-							if TidyPlatesThreat.db.profile.threat.nonCombat and TidyPlatesThreat.db.profile.verbose then return print("-->>Hiding of Non-Combat mob threat is |cff00ff00ON!!|r<<--") elseif TidyPlatesThreat.db.profile.verbose then return print ("-->>Hiding of Non-Combat mob threat is |cffff0000OFF!!|r<<--") end
-							end,
+							if TidyPlatesThreat.db.profile.threat.nonCombat and TidyPlatesThreat.db.profile.verbose then 
+								return print("-->>Hiding of Non-Combat mob threat is |cff00ff00ON!!|r<<--") 
+							elseif TidyPlatesThreat.db.profile.verbose then 
+								return print ("-->>Hiding of Non-Combat mob threat is |cffff0000OFF!!|r<<--") 
+							end
+						end,
 					},
 					Neutral_Threat = {
 						order = 8,
@@ -7473,8 +7483,12 @@ local options = {
 						get = function() return TidyPlatesThreat.db.profile.threat.hideNonCombat end,
 						set = function(info)
 							TidyPlatesThreat.db.profile.threat.hideNonCombat = not TidyPlatesThreat.db.profile.threat.hideNonCombat
-							if TidyPlatesThreat.db.profile.threat.hideNonCombat and TidyPlatesThreat.db.profile.verbose then return print("-->>Hiding of Non-Combat mob nameplates is |cff00ff00ON!!|r<<--") elseif TidyPlatesThreat.db.profile.verbose then return print ("-->>Hiding of Non-Combat mob nameplates is |cffff0000OFF!!|r<<--") end
-							end,
+							if TidyPlatesThreat.db.profile.threat.hideNonCombat and TidyPlatesThreat.db.profile.verbose then 
+								return print("-->>Hiding of Non-Combat mob nameplates is |cff00ff00ON!!|r<<--") 
+							elseif TidyPlatesThreat.db.profile.verbose then 
+								return print ("-->>Hiding of Non-Combat mob nameplates is |cffff0000OFF!!|r<<--") 
+							end
+						end,
 					},
 					UnitTypeScales = {
 						order = 12,
@@ -7952,7 +7966,11 @@ local options = {
 								get = function() return TidyPlatesThreat.db.profile.threat.marked.art end,
 								set = function(info,val) 
 									TidyPlatesThreat.db.profile.threat.marked.art = not TidyPlatesThreat.db.profile.threat.marked.art
-									if TidyPlatesThreat.db.profile.threat.marked.art and TidyPlatesThreat.db.profile.verbose then return print("-->>Ignoring of marked unit threat textures is now |cff00ff00ON!|r<<--") elseif TidyPlatesThreat.db.profile.verbose then return print("-->>Ignoring of marked unit threat textures is now |cffff0000OFF!|r<<--") end
+									if TidyPlatesThreat.db.profile.threat.marked.art and TidyPlatesThreat.db.profile.verbose then 
+										return print("-->>Ignoring of marked unit threat textures is now |cff00ff00ON!|r<<--") 
+									elseif TidyPlatesThreat.db.profile.verbose then 
+										return print("-->>Ignoring of marked unit threat textures is now |cffff0000OFF!|r<<--") 
+									end
 									TidyPlates:ReloadTheme()
 								end
 							},
@@ -7965,7 +7983,11 @@ local options = {
 								get = function() return TidyPlatesThreat.db.profile.threat.marked.alpha end,
 								set = function(info,val) 
 									TidyPlatesThreat.db.profile.threat.marked.alpha = not TidyPlatesThreat.db.profile.threat.marked.alpha
-									if TidyPlatesThreat.db.profile.threat.marked.alpha and TidyPlatesThreat.db.profile.verbose then return print("-->>Ignoring of marked unit threat alpha is now |cff00ff00ON!|r<<--") elseif TidyPlatesThreat.db.profile.verbose then return print("-->>Ignoring of marked unit threat alpha is now |cffff0000OFF!|r<<--") end
+									if TidyPlatesThreat.db.profile.threat.marked.alpha and TidyPlatesThreat.db.profile.verbose then 
+										return print("-->>Ignoring of marked unit threat alpha is now |cff00ff00ON!|r<<--") 
+									elseif TidyPlatesThreat.db.profile.verbose then 
+										return print("-->>Ignoring of marked unit threat alpha is now |cffff0000OFF!|r<<--") 
+									end
 									TidyPlates:ReloadTheme()
 								end
 							},
@@ -7978,7 +8000,11 @@ local options = {
 								get = function() return TidyPlatesThreat.db.profile.threat.marked.scale end,
 								set = function(info,val) 
 									TidyPlatesThreat.db.profile.threat.marked.scale = not TidyPlatesThreat.db.profile.threat.marked.scale
-									if TidyPlatesThreat.db.profile.threat.marked.scale and TidyPlatesThreat.db.profile.verbose then return print("-->>Ignoring of marked unit threat scale is now |cff00ff00ON!|r<<--") elseif TidyPlatesThreat.db.profile.verbose then return print("-->>Ignoring of marked unit threat scale is now |cffff0000OFF!|r<<--") end
+									if TidyPlatesThreat.db.profile.threat.marked.scale and TidyPlatesThreat.db.profile.verbose then 
+										return print("-->>Ignoring of marked unit threat scale is now |cff00ff00ON!|r<<--") 
+									elseif TidyPlatesThreat.db.profile.verbose then 
+										return print("-->>Ignoring of marked unit threat scale is now |cffff0000OFF!|r<<--") 
+									end
 									TidyPlates:ReloadTheme()
 								end
 							},
@@ -8016,9 +8042,9 @@ local options = {
 						},
 					},
 					SpecSetting = {
-						name = "|cffffffffВторая специализация|r",
+						name = "|cffffffffВетки талантов|r",
 						type = "group",
-						desc = "Установите роль для первого и второго набора талантов.",
+						desc = "Установите роль для каждого набора талантов.",
 						order = 4,
 						args = {
 							header = {
@@ -8095,6 +8121,41 @@ local options = {
 								set = function(info,val) 
 									TidyPlatesThreat.db.char.spec.secondary = false
 									if GetActiveTalentGroup() == 2 then
+										TidyPlatesThreat.db.char.threat.tanking = false
+									end
+									
+									TidyPlates:ReloadTheme()
+								end
+							},
+							secondary2 = {
+								order = 9,
+								name = "Третий набор талантов",
+								type = "header"
+							},
+							secondary2Tank = {
+								order = 10,
+								name = "Танк",
+								type = "toggle",
+								width = "full",
+								get = function() return TidyPlatesThreat.db.char.spec.secondary2 end,
+								set = function(info,val) 
+									TidyPlatesThreat.db.char.spec.secondary2 = true
+									if GetActiveTalentGroup() == 3 then
+										TidyPlatesThreat.db.char.threat.tanking = true
+									end
+									
+									TidyPlates:ReloadTheme()
+								end
+							},
+							secondary2DPS = {
+								order = 11,
+								name = "ДПС",
+								type = "toggle",
+								width = "full",
+								get = function() return not TidyPlatesThreat.db.char.spec.secondary2 end,
+								set = function(info,val) 
+									TidyPlatesThreat.db.char.spec.secondary2 = false
+									if GetActiveTalentGroup() == 3 then
 										TidyPlatesThreat.db.char.threat.tanking = false
 									end
 									

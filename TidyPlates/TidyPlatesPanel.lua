@@ -8,7 +8,8 @@ local activespec = "primary"
 -------------------------------------------------------------------------------------
 --  Default Options
 -------------------------------------------------------------------------------------
-TidyPlatesOptions = {primary = "Neon/Tank", secondary = "Neon/DPS", autohide = false}
+--TidyPlatesOptions = {primary = "Threat Plates", secondary = "Threat Plates", secondary2 = "Threat Plates", autohide = false}
+TidyPlatesOptions = {primary = "Threat Plates", secondary = "Threat Plates", autohide = false}
 local TidyPlatesOptionsDefaults = copytable(TidyPlatesOptions)
 local TidyPlatesThemeNames, TidyPlatesThemeIndexes = {}, {}
 if not TidyPlatesThemeList then TidyPlatesThemeList = {} end
@@ -113,6 +114,10 @@ local function ActivateInterfacePanel()
 	panel.SecondarySpecTheme = PanelHelpers:CreateDropdownFrame("TidyPlatesChooserDropdown2", panel, dropmenu, 1)
 	panel.SecondarySpecTheme:SetPoint("TOPLEFT",panel.PrimarySpecTheme, "TOPRIGHT", 100, 0)
 	
+	-- Secondary2 Spec Dropdown
+	--[[panel.Secondary2SpecTheme = PanelHelpers:CreateDropdownFrame("TidyPlatesChooserDropdown3", panel, dropmenu, 1)
+	panel.Secondary2SpecTheme:SetPoint("TOPLEFT",panel.PrimarySpecTheme, "TOPRIGHT", 100, 0)]]
+
 	-- Primary Label 
 	panel.PrimaryLabel = panel:CreateFontString(nil, 'ARTWORK', 'GameFontNormal')
 	panel.PrimaryLabel:SetPoint("BOTTOMLEFT", panel.PrimarySpecTheme,"TOPLEFT", 20, 5)
@@ -126,6 +131,13 @@ local function ActivateInterfacePanel()
 	panel.SecondaryLabel:SetWidth(170)
 	panel.SecondaryLabel:SetJustifyH("LEFT")
 	panel.SecondaryLabel:SetText("Набор талантов 2:")
+
+	-- Secondary2 Label 
+	--[[panel.Secondary2Label = panel:CreateFontString(nil, 'ARTWORK', 'GameFontNormal')
+	panel.Secondary2Label:SetPoint("BOTTOMLEFT", panel.SecondarySpecTheme,"TOPLEFT", 20, 5)
+	panel.Secondary2Label:SetWidth(170)
+	panel.Secondary2Label:SetJustifyH("LEFT")
+	panel.Secondary2Label:SetText("Набор талантов 3:")]]
 
 	-- Overlap:
 	panel.AllowOverlap = PanelHelpers:CreateCheckButton("TidyPlatesOptions_Overlap", panel, "Разрешить наложение полос здоровья")

@@ -5,8 +5,8 @@
 
 local theme = {}
 local defaultArtPath = "Interface\\Addons\\TidyPlates\\Media"
-local font =					defaultArtPath.."\\LiberationSans-Regular.ttf"
---local font =					"FONTS\\arialn.ttf"
+local font = defaultArtPath.."\\LiberationSans-Regular.ttf"
+--local font = "FONTS\\arialn.ttf"
 local nameplate_verticalOffset = -5
 local castBar_verticalOffset = -6 -- Adjust Cast Bar distance
 
@@ -16,9 +16,9 @@ theme.hitbox = {
 }
 
 theme.healthborder = {
-	texture		 =				defaultArtPath.."\\RegularBorder",
-	glowtexture =					defaultArtPath.."\\Highlight",
-	elitetexture =					defaultArtPath.."\\EliteBorder",
+	texture = defaultArtPath.."\\RegularBorder",
+	glowtexture = defaultArtPath.."\\Highlight",
+	elitetexture = defaultArtPath.."\\EliteBorder",
 	width = 128,
 	height = 64,
 	x = 0,
@@ -27,8 +27,8 @@ theme.healthborder = {
 }
 
 theme.threatborder = {
-	texture =			defaultArtPath.."\\RegularThreat",
-	elitetexture =			defaultArtPath.."\\EliteThreat",
+	texture = defaultArtPath.."\\RegularThreat",
+	elitetexture = defaultArtPath.."\\EliteThreat",
 	width = 128,
 	height = 64,
 	x = 0,
@@ -37,7 +37,7 @@ theme.threatborder = {
 }
 
 theme.castborder = {
-	texture =					defaultArtPath.."\\CastStoppable",
+	texture = defaultArtPath.."\\CastStoppable",
 	width = 128,
 	height = 64,
 	x = 0,
@@ -46,7 +46,7 @@ theme.castborder = {
 }
 
 theme.castnostop = {
-	texture = 				defaultArtPath.."\\CastNotStoppable",
+	texture = defaultArtPath.."\\CastNotStoppable",
 	width = 128,
 	height = 64,
 	x = 0,
@@ -55,7 +55,7 @@ theme.castnostop = {
 }
 
 theme.name = {
-	typeface =					font,
+	typeface = font,
 	size = 9,
 	width = 88,
 	height = 10,
@@ -69,7 +69,7 @@ theme.name = {
 }
 
 theme.level = {
-	typeface =					font,
+	typeface = font,
 	size = 9,
 	width = 25,
 	height = 10,
@@ -83,7 +83,7 @@ theme.level = {
 }
 
 theme.healthbar = {
-	texture =					 defaultArtPath.."\\Statusbar",
+	texture =  defaultArtPath.."\\Statusbar",
 	height = 12,
 	width = 101,
 	x = 0,
@@ -93,7 +93,7 @@ theme.healthbar = {
 }
 
 theme.castbar = {
-	texture =					defaultArtPath.."\\Statusbar",
+	texture = defaultArtPath.."\\Statusbar",
 	height = 12,
 	width = 99,
 	x = 0,
@@ -103,7 +103,7 @@ theme.castbar = {
 }
 
 theme.specialText = {
-	typeface =					font,
+	typeface = font,
 	size = 9,
 	width = 93,
 	height = 10,
@@ -117,7 +117,7 @@ theme.specialText = {
 }
 
 theme.specialText2 = {
-	typeface =					font,
+	typeface = font,
 	size = 8,
 	width = 100,
 	height = 10,

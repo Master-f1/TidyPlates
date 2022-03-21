@@ -2,7 +2,7 @@
 -- Elite Art Widget --
 ----------------------
 local path = "Interface\\AddOns\\TidyPlates_ThreatPlates\\Widgets\\EliteArtWidget\\"
-EliteList = {default = "Default", skullandcross = "Skull & Crossbones"}
+EliteList = {default = "Звезда", skullandcross = "Череп и Крест"}
 
 local function UpdateEliteFrameArt(frame, unit)
 	if (unit.isElite) and TidyPlatesThreat.db.profile.eliteWidget.ON then

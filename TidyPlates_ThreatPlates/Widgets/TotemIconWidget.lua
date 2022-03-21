@@ -2,18 +2,18 @@
 -- Totem Icon Widget
 ---------------
 local path = "Interface\\Addons\\TidyPlates_ThreatPlates\\Widgets\\TotemIconWidget\\"
-TotemStyles = {normal = "Normal", special = "Special"}
+TotemStyles = {normal = "Обычный", special = "Специальный"}
 local roman = {
-"",
-" II",
-" III",
-" IV",
-" V",
-" VI",
-" VII",
-" VIII",
-" IX",
-" X"
+	"",
+	" II",
+	" III",
+	" IV",
+	" V",
+	" VI",
+	" VII",
+	" VIII",
+	" IX",
+	" X"
 }
 
 function tL(number)

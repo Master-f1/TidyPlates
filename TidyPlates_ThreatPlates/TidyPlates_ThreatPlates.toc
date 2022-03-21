@@ -1,10 +1,11 @@
 ﻿## Interface: 30300
-## Title: Tidy Plates: |cff89F559Threat Plates|r |cffff00ffBeta|r
+## Title: Tidy Plates: |cff89F559Threat Plates|r
 ## Notes: Revolutionary |cff89F559threat reactive nameplates|r by |cff3079ffSuicidal Katt|r.
-## Author: Suicidal Katt
+## Notes-ruRU: Позволяет настроить внешний вид полос здоровья, исходя из уровня угрозы.
+## Author: Suicidal Katt, Master-f1 (перевёл на русский)
 ## RequiredDeps: TidyPlates
 ## SavedVariables: ThreatPlates3BetaDB
-## Version: 3.3
+## Version: 3.4
 ## OptionalDeps: Ace3, LibSharedMedia-3.0
 
 Libs\LibStub\LibStub.lua

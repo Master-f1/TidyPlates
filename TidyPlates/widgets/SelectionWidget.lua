@@ -1,10 +1,8 @@
----------------
--- Target Widget
----------------
+--Target Widget
 local targetwidgetimage = "Interface\\Addons\\TidyPlates_Neon\\Media\\Neon_Select"
 
 local function UpdateSelectionWidget(self, unit)
-	if unit.isTarget then self:Show() else self:Hide()
+	if unit.isTarget then self:Show() else self:Hide() end
 end
 
 local function SetSelectionWidgetTexture(self, texture)
@@ -22,5 +20,3 @@ local function CreateSelectionWidget(parent)
 end
 
 TidyPlatesWidgets.CreateSelectionWidget = CreateSelectionWidget
-
-

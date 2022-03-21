@@ -4,16 +4,16 @@ local path = "Interface\\Addons\\TidyPlates_ThreatPlates\\Artwork\\"
 local _, PlayerClass = UnitClass("player")
 local Active = function() return GetActiveTalentGroup() end
 local HEX_CLASS_COLOR = { 
-SHAMAN 		= "2459FF", 
-MAGE 		= "69CCF0",
-WARLOCK 	= "9482C9",
-HUNTER		= "ABD473",
-ROGUE		= "FFF569",
-PRIEST		= "FFFFFF",
-DRUID 		= "FF7D0A",
-DEATHKNIGHT = "C41F3B",
-WARRIOR 	= "C79C6E",
-PALADIN 	= "F58CBA",
+	SHAMAN 		= "2459FF", 
+	MAGE 		= "69CCF0",
+	WARLOCK 	= "9482C9",
+	HUNTER		= "ABD473",
+	ROGUE		= "FFF569",
+	PRIEST		= "FFFFFF",
+	DRUID 		= "FF7D0A",
+	DEATHKNIGHT = "C41F3B",
+	WARRIOR 	= "C79C6E",
+	PALADIN 	= "F58CBA",
 }
 local tankRole = "|cff00ff00tanking|r"
 local dpsRole = "|cffff0000dpsing / healing|r"
@@ -33,18 +33,21 @@ currentSpec = {}
 function currentRoleBool(number)
 	currentSpec[1] = TidyPlatesThreat.db.char.spec.primary
 	currentSpec[2] = TidyPlatesThreat.db.char.spec.secondary
+	currentSpec[3] = TidyPlatesThreat.db.char.spec.secondary2
 	if currentSpec[number] then return currentSpec[number] end
 end
 function setSpecTank(number)
 	local specIs = {}
 	specIs[1] = "primary"
 	specIs[2] = "secondary"
+	specIs[3] = "secondary2"
 	TidyPlatesThreat.db.char.spec[specIs[number]] = true
 end
 function setSpecDPS(number)
 	local specIs = {}
 	specIs[1] = "primary"
 	specIs[2] = "secondary"
+	specIs[3] = "secondary2"
 	TidyPlatesThreat.db.char.spec[specIs[number]] = false
 end
 
@@ -73,6 +76,12 @@ function roleText() --Staggered till after called
 		else
 			return dpsRole
 		end
+	elseif Active() == 3 then
+		if TidyPlatesThreat.db.char.spec.secondary2 then
+			return tankRole
+		else
+			return dpsRole
+		end
 	end
 end
 
@@ -91,7 +100,7 @@ function specName()
 			return "Undetermined"
 		end
 		return ""
-	end		
+	end
 end
 
 --[[Options and Default Settings]]--
@@ -110,13 +119,19 @@ function TidyPlatesThreat:OnInitialize()
 					[2] = 0,
 					[3] = 0
 				},
+				[3] = {
+					[1] = 0,
+					[2] = 0,
+					[3] = 0
+				},
 			},
 			threat = {
 				tanking = true,
 			},
 			spec = {
 				primary = true,
-				secondary = false
+				secondary = false,
+				secondary2 = false
 			},
 			specName = {
 				[1] = nil,
@@ -365,7 +380,7 @@ function TidyPlatesThreat:OnInitialize()
 					color = {
 						r = 1,
 						g = 1,
-						b = 1					
+						b = 1
 					},
 				},
 				level = {
@@ -414,42 +429,42 @@ function TidyPlatesThreat:OnInitialize()
 						["STAR"] = {
 							r = 0.85,
 							g = 0.81,
-							b = 0.27						
+							b = 0.27
 						},
 						["MOON"] = {
 							r = 0.60,
 							g = 0.75,
-							b = 0.85						
+							b = 0.85
 						},
 						["CIRCLE"] = {
 							r = 0.93,
 							g = 0.51,
-							b = 0.06						
+							b = 0.06
 						},
 						["SQUARE"] = {
 							r = 0,
 							g = 0.64,
-							b = 1						
+							b = 1
 						},
 						["DIAMOND"] = {
 							r = 0.7,
 							g = 0.06,
-							b = 0.84						
+							b = 0.84
 						},
 						["CROSS"] = {
 							r = 0.82,
 							g = 0.18,
-							b = 0.18						
+							b = 0.18
 						},
 						["TRIANGLE"] = {
 							r = 0.14,
 							g = 0.66,
-							b = 0.14						
+							b = 0.14
 						},
 						["SKULL"] = {
 							r = 0.89,
 							g = 0.83,
-							b = 0.74						
+							b = 0.74
 						},
 					},
 				},
@@ -584,7 +599,6 @@ function TidyPlatesThreat:OnInitialize()
 			},
 			threat = {
 				ON = true,
-				marked = false,
 				nonCombat = true,
 				hideNonCombat = false,
 				useType = true,
@@ -604,32 +618,32 @@ function TidyPlatesThreat:OnInitialize()
 				},
 				dps = {
 					scale = {
-						LOW 		= 0.8,
-						MEDIUM		= 0.9,
-						HIGH 		= 1.25
+						LOW = 0.8,
+						MEDIUM = 0.9,
+						HIGH = 1.25
 					},
 					alpha = {
-						LOW 		= 1,
-						MEDIUM		= 1,
-						HIGH 		= 1
+						LOW = 1,
+						MEDIUM = 1,
+						HIGH = 1
 					},
 				},
 				tank = {
 					scale = {
-						LOW 		= 1.25,
-						MEDIUM		= 0.9,
-						HIGH 		= 0.8
+						LOW = 1.25,
+						MEDIUM = 0.9,
+						HIGH = 0.8
 					},
 					alpha = {
-						LOW 		= 1,
-						MEDIUM		= 0.85,
-						HIGH 		= 0.75
+						LOW = 1,
+						MEDIUM = 0.85,
+						HIGH = 0.75
 					},
 				},
 				marked = {
 					alpha = false,
 					art = false,
-					scale = false					
+					scale = false
 				},
 			},
 			nameplate = {
@@ -657,7 +671,7 @@ function TidyPlatesThreat:OnInitialize()
 				},
 			},
 		}
-    }
+	}
 	local db = LibStub('AceDB-3.0'):New('ThreatPlates3BetaDB', defaults, 'Default')
 	self.db = db
 	local RegisterCallback = db.RegisterCallback
@@ -673,8 +687,8 @@ function toggleDPS()
 	TidyPlatesThreat.db.char.threat.tanking = false
 	TidyPlatesThreat.db.profile.threat.ON = true
 	if TidyPlatesThreat.db.profile.verbose then
-	print("-->>|cffff0000DPS Plates Enabled|r<<--")
-	print("|cff89F559Threat Plates|r: DPS switch detected, you are now in your |cff89F559"..dualSpec().."|r spec and are now in your |cffff0000dpsing / healing|r role.")
+	print("-->>|cffff0000Модуль ДПС включен|r<<--")
+	print("|cff89F559Threat Plates|r: Обнаружена ветка дд, вы сейчас в |cff89F559"..dualSpec().."|r Спек переключен на |cffff0000дпс/хил|r ")
 	end
 	TidyPlates:ForceUpdate()
 end
@@ -683,8 +697,8 @@ function toggleTANK()
 	TidyPlatesThreat.db.char.threat.tanking = true
 	TidyPlatesThreat.db.profile.threat.ON = true
 	if TidyPlatesThreat.db.profile.verbose then
-	print("-->>|cff00ff00Tank Plates Enabled|r<<--")
-	print("|cff89F559Threat Plates|r: Tank switch detected, you are now in your |cff89F559"..dualSpec().."|r spec and are now in your |cff00ff00tanking|r role.")
+	print("-->>|cff00ff00Модуль танка включен|r<<--")
+	print("|cff89F559Threat Plates|r: Обнаружена ветка танка, вы сейчас в |cff89F559"..dualSpec().."|r Спек переключен на |cff00ff00танка|r ")
 	end
 	TidyPlates:ForceUpdate()
 end
@@ -711,9 +725,9 @@ SlashCmdList["TPTPTOGGLE"] = TPTPTOGGLE
 local function TPTPOVERLAP()
 	SetCVar("nameplateAllowOverlap",abs(GetCVar("nameplateAllowOverlap")-1))
 	if GetCVar("nameplateAllowOverlap") == "1" and TidyPlatesThreat.db.profile.verbose then
-		print("-->>Nameplate Overlapping is now |cff00ff00ON!|r<<--")
+		print("-->>Наложение плашек |cff00ff00Включено!|r<<--")
 	else
-		print("-->>Nameplate Overlapping is now |cffff0000OFF!|r<<--")
+		print("-->>Наложение плашек |cffff0000Выключено!|r<<--")
 	end
 end
 SLASH_TPTPOVERLAP1 = "/tptpol"
@@ -721,9 +735,9 @@ SlashCmdList["TPTPOVERLAP"] = TPTPOVERLAP
 local function TPTPVERBOSE()
 	TidyPlatesThreat.db.profile.verbose = not TidyPlatesThreat.db.profile.verbose
 	if TidyPlatesThreat.db.profile.verbose then
-		print("-->>Threat Plates verbose is now |cff00ff00ON!|r<<--")
+		print("-->>Threat Plates |cff00ff00Включен!|r<<--")
 	else
-		print("-->>Threat Plates verbose is now |cffff0000OFF!|r<<-- shhh!!")
+		print("-->>Threat Plates |cffff0000Выключен!|r<<-- shhh!!")
 	end
 end
 SLASH_TPTPVERBOSE1 = "/tptpverbose"
@@ -829,30 +843,31 @@ end
 local function SetToThreatPlates()
 	TidyPlatesOptions.primary = "Threat Plates"
 	TidyPlatesOptions.secondary = "Threat Plates"
+	TidyPlatesOptions.secondary2 = "Threat Plates"
 	ReloadUI()
 end
 function TidyPlatesThreat:StartUp()
 	specInfo()
 	local t = self.db.char.specInfo[Active()]
--- Welcome
-	local Welcome = "|cff89f559Welcome to |rTidy Plates: |cff89f559Threat Plates!\nThis is your first time using Threat Plates and you are a(n):\n|r|cff"..HEX_CLASS_COLOR[PlayerClass]..specName().." "..UnitClass("player")..": "..t[1].."/"..t[2].."/"..t[3].."|r|cff89F559.|r\n"
--- Body
+	-- Welcome
+	local Welcome = "Добро пожаловать, вы: |r|cff"..HEX_CLASS_COLOR[PlayerClass]..specName().." "..UnitClass("player")..": "..t[1].."/"..t[2].."/"..t[3].."|r|cff89F559.|r\n"
+	-- Body
 	local NotTank = Welcome.."|cff89f559Your dual spec's have been set to |r"..dpsRole.."|cff89f559.|r"
 	local CurrentlyDPS = Welcome.."|cff89f559You are currently in your "..dpsRole.."|cff89f559 role.|r"
 	local CurrentlyTank = Welcome.."|cff89f559You are currently in your "..tankRole.."|cff89f559 role.|r"
 	local Undetermined = Welcome.."|cff89f559Your role can not be determined.\nPlease set your dual spec preferences in the |rThreat Plates|cff89f559 options.|r"
--- End
+	-- End
 	local Conclusion = "|cff89f559Additional options can be found by typing |r'/tptp'|cff89F559.|r"
--- Welcome Setup / Display
+	-- Welcome Setup / Display
 	if not self.db.char.welcome then
 		self.db.char.welcome = true
 		if ((TidyPlatesOptions.primary ~= "Threat Plates") and (TidyPlatesOptions.secondary ~= "Threat Plates")) then
 			local spec = dualSpec()
 			StaticPopupDialogs["SetToThreatPlates"] = {
-				text = GetAddOnMetadata("TidyPlates_ThreatPlates", "title")..":\n----------\nWould you like to \nset your theme to |cff89F559Threat Plates|r?\n\nClicking '|cff00ff00Yes|r' will set you to Threat Plates & reload UI. \n Clicking '|cffff0000No|r' will open the Tidy Plates options.", 
-				button1 = "Yes", 
-				button2 = "Cancel",
-				button3 = "No",
+				text = GetAddOnMetadata("TidyPlates_ThreatPlates", "title")..":\nНажмите '|cff00ff00Да|r' для установки Threat Plates и перезагрузки UI, \n или '|cffff0000Нет|r' для настройки.", 
+				button1 = "Да", 
+				button2 = "Отмена",
+				button3 = "Нет",
 				timeout = 0,
 				whileDead = 1, 
 				hideOnEscape = 1, 
@@ -861,7 +876,7 @@ function TidyPlatesThreat:StartUp()
 					InterfaceOptionsFrame_OpenToCategory("Tidy Plates")
 				end,
 				OnCancel = function() 
-					if TidyPlatesThreat.db.profile.verbose then print("-->>|cffff0000Activate Threat Plates from the Tidy Plates options!|r<<--") end
+					if TidyPlatesThreat.db.profile.verbose then print("-->>|cffff0000Ручная настройка!|r<<--") end
 				end,
 			}
 			StaticPopup_Show("SetToThreatPlates")
@@ -923,13 +938,13 @@ function TidyPlatesThreat:StartUp()
 		else
 			if TidyPlatesThreat.db.profile.verbose then	print(Welcome) end
 		end
-	if TidyPlatesThreat.db.profile.verbose then	print(Conclusion) end
-	self.db.char.threat.tanking = currentRoleBool(Active()) -- Aligns tanking role with current spec on log in, post setup.
-	if GetCVar("ShowVKeyCastbar") == 1 then
-		TidyPlatesThreat.db.profile.castbarSettings.toggle = true
-	else
-		TidyPlatesThreat.db.profile.castbarSettings.toggle = false
-	end
+		if TidyPlatesThreat.db.profile.verbose then	print(Conclusion) end
+		self.db.char.threat.tanking = currentRoleBool(Active()) -- Сравнивает ветку танка с текущей, после установки.
+		if GetCVar("ShowVKeyCastbar") == 1 then
+			TidyPlatesThreat.db.profile.castbarSettings.toggle = true
+		else
+			TidyPlatesThreat.db.profile.castbarSettings.toggle = false
+		end
 	end
 end
 --[[Events]]--
@@ -937,13 +952,6 @@ local events = {}
 local f = CreateFrame("Frame")
 function f:Events(self,event,...)
 	local arg1, arg2 = ...
-	--[[if arg2 then
-		print(event.." "..arg1.." "..arg2)
-	elseif arg1 then
-		print(event.." "..arg1)
-	else
-		print(event)
-	end]]--
 	if event == "ADDON_LOADED" then
 		if arg1 == "TidyPlates_ThreatPlates" then
 			local setup = {
@@ -961,7 +969,7 @@ function f:Events(self,event,...)
 	elseif event == "PLAYER_ALIVE" then
 		TidyPlatesThreat:StartUp()
 	elseif event == "PLAYER_LOGIN" then
-		TidyPlatesThreat.db.char.threat.tanking = currentRoleBool(Active()) -- Aligns tanking role with current spec on log in.
+		TidyPlatesThreat.db.char.threat.tanking = currentRoleBool(Active()) -- Сравнивает ветку танка с текущей, после входа в систему.
 		if GetCVar("nameplateShowEnemyTotems") == "1" then
 			TidyPlatesThreat.db.profile.nameplate.toggle["Totem"] = true
 		else
@@ -969,7 +977,7 @@ function f:Events(self,event,...)
 		end
 		SetCVar("ShowClassColorInNameplate", 1)
 		if TidyPlatesThreat.db.char.welcome and ((TidyPlatesOptions.primary == "Threat Plates") or (TidyPlatesOptions.secondary == "Threat Plates")) and TidyPlatesThreat.db.profile.verbose then
-			print("|cff89f559Threat Plates:|r Welcome back |cff"..HEX_CLASS_COLOR[PlayerClass]..UnitName("player").."|r!!")
+			print("|cff89f559Threat Plates:|r Добро пожаловать |cff"..HEX_CLASS_COLOR[PlayerClass]..UnitName("player").."|r!")
 		end
 	elseif event == "PLAYER_ENTERING_WORLD" then
 		local inInstance, iType = IsInInstance()
@@ -986,7 +994,7 @@ function f:Events(self,event,...)
 		local t = TidyPlatesThreat.db.char.specInfo[Active()]
 		TidyPlatesThreat.db.char.threat.tanking = currentRoleBool(Active())
 		if ((TidyPlatesOptions.primary == "Threat Plates") or (TidyPlatesOptions.secondary == "Threat Plates")) and TidyPlatesThreat.db.profile.verbose then
-			print("|cff89F559Threat Plates|r: Player spec change detected: |cff"..HEX_CLASS_COLOR[PlayerClass]..specName()..": ("..t[1].."/"..t[2].."/"..t[3]..")|r, you are now in your |cff89F559"..dualSpec().."|r spec and are now in your "..roleText().." role.")
+			print("|cff89F559Ветка талантов определена|r: |cff"..HEX_CLASS_COLOR[PlayerClass]..specName()..": ("..t[1].."/"..t[2].."/"..t[3]..")|r, вы |cff89F559"..dualSpec().."|r "..roleText()..".")
 		end
 		TidyPlates:ForceUpdate()
 	elseif event == "PLAYER_REGEN_DISABLED" or event == "PLAYER_REGEN_ENABLED" then

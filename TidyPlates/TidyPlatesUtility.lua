@@ -42,7 +42,8 @@ local function updatetable(original, added)
 			--original[index] = added[index] or original[index] 
 			if added[index] ~= nil then
 				original[index] = added[index] 
-			else original[index] = original[index] end
+			--else original[index] = original[index] 
+			end
 		
 		end
 	end

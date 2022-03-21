@@ -4,16 +4,16 @@
 local path = "Interface\\Addons\\TidyPlates_ThreatPlates\\Widgets\\UniqueIconWidget\\"
 
 local roman = {
-"",
-" II",
-" III",
-" IV",
-" V",
-" VI",
-" VII",
-" VIII",
-" IX",
-" X"
+	"",
+	" II",
+	" III",
+	" IV",
+	" V",
+	" VI",
+	" VII",
+	" VIII",
+	" IX",
+	" X"
 }
 
 function uL(number)
